@@ -24,6 +24,11 @@ const (
 )
 
 // Client talks to the CLIProxyAPI v8 management API.
+//
+// RequestTimeout bounds each management call. This is deliberate: the router
+// is an out-of-process companion, not part of the proxy's upstream request
+// path, and a hung call must not stall every later cycle. Upstream usage
+// probes are additionally bounded by the management APICall timeout.
 type Client struct {
 	BaseURL        string
 	ManagementKey  string
