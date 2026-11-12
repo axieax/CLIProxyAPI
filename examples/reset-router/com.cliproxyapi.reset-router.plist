@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd agent for reset-router (see docs/reset-router.md).
+  Replace /Users/YOU with your home directory, then:
+    cp com.cliproxyapi.reset-router.plist ~/Library/LaunchAgents/
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.cliproxyapi.reset-router.plist
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.cliproxyapi.reset-router</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/YOU/.local/bin/reset-router</string>
+		<string>--management-key-file</string>
+		<string>/Users/YOU/.cli-proxy-api/management-key</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ThrottleInterval</key>
+	<integer>60</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/YOU/Library/Logs/cliproxy-reset-router.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/YOU/Library/Logs/cliproxy-reset-router.log</string>
+</dict>
+</plist>
